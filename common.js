@@ -1,6 +1,5 @@
 (function () {
     var ASSETS = [
-        ['link', { rel: 'icon', href: 'favicon.png' }],
         ['meta', { name: 'keywords', content: 'Uberstrike' }],
         ['meta', { name: 'robots', content: 'index, follow' }],
         ['meta', { name: 'language', content: 'English' }]
