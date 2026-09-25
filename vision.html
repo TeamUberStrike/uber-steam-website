@@ -2,283 +2,28 @@
 <html>
 
 <head>
+    <script src="common.js"></script>
     <meta name="title" content="UberStrike">
     <meta name="description" content="UberStrike is alive!">
-    <meta name="keywords" content="Uberstrike">
-    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="language" content="English">
+    <link rel="canonical" href="https://steam-portal.uberstrike.com/vision.html" />
+    <meta property="og:title" content="Vision - UberStrike">
+    <meta property="og:description" content="UberStrike is alive!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://steam-portal.uberstrike.com/vision.html">
+
     <title>Vision – UberStrike</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --accent: #00d9ff;
-            --accent-2: #8b5cf6;
-            --bg: #05070d;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --text: #e8ecf4;
-            --muted: #9aa8bd;
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #0a0e17;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #00d9ff, #8b5cf6);
-            border-radius: 8px;
-        }
-
-        * {
-            scrollbar-width: thin;
-            scrollbar-color: #00d9ff #0a0e17;
-        }
-
-        ::selection {
-            background: #00d9ff;
-            color: #05070d;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 84px;
-        }
-
-        body {
-            font-family: 'Rajdhani', 'Teko', sans-serif;
-            font-size: 19px;
-            letter-spacing: 0.5px;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        .uber-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1030;
-            background: rgba(6, 10, 18, 0.82);
-            -webkit-backdrop-filter: blur(14px);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--card-border);
-        }
-
-        .uber-nav .uber-brand {
-            font-family: 'Teko', sans-serif;
-            font-size: 26px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-decoration: none;
-            background: linear-gradient(90deg, #ffffff, #00d9ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .uber-nav .nav-link {
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            font-size: 18px;
-            transition: color .2s ease, text-shadow .2s ease;
-        }
-
-        .uber-nav .nav-link:hover,
-        .uber-nav .nav-link.active {
-            color: #00d9ff;
-            text-shadow: 0 0 12px rgba(0, 217, 255, 0.5);
-        }
-
-        .navbar-toggler {
-            border-color: var(--card-border);
-        }
-
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(233,240,255,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-
-        .uber-background {
-            position: relative;
-            background-image: linear-gradient(to right, rgba(2, 6, 14, 0.92), rgba(4, 10, 22, 0.75), rgba(2, 6, 14, 0.92)), url('image/bg2.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            overflow: hidden;
-        }
-
-        .uber-background::before {
-            content: "";
-            position: absolute;
-            inset: -20%;
-            z-index: 0;
-            background:
-                radial-gradient(circle at 20% 25%, rgba(0, 217, 255, 0.16), transparent 45%),
-                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.16), transparent 45%);
-            animation: drift 18s ease-in-out infinite alternate;
-            pointer-events: none;
-        }
-
-        @keyframes drift {
-            0% {
-                transform: translate3d(-3%, -2%, 0) scale(1);
-            }
-            100% {
-                transform: translate3d(3%, 4%, 0) scale(1.06);
-            }
-        }
-
-        .uber-background::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-            background-size: 44px 44px;
-            -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7), transparent 75%);
-            mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7), transparent 75%);
-            pointer-events: none;
-        }
-
-        .page-wrap {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 140px 0 100px;
-        }
-
-        .uber-bar {
-            position: relative;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 8px 28px;
-            padding: 42px 44px;
-            border-radius: 14px;
-            color: #fff;
-            background: rgba(9, 15, 27, 0.6);
-            border: 1px solid var(--card-border);
-            -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
-            transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
-        }
-
-        .uber-bar::before {
-            content: "";
-            position: absolute;
-            left: -1px;
-            top: 18px;
-            bottom: 10px;
-            width: 4px;
-            border-radius: 4px;
-            background: linear-gradient(180deg, #00d9ff, #8b5cf6);
-            box-shadow: 0 0 14px rgba(0, 217, 255, 0.6);
-        }
-
-        .uber-bar h2 {
-            font-family: 'Teko', sans-serif;
-            font-size: 46px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            line-height: 1;
-            margin: 0;
-            background: linear-gradient(90deg, #ffffff 0%, #bdf1ff 40%, #00d9ff 80%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.3));
-        }
-
-        .uber-bar p {
-            margin: 0;
-            font-size: 22px;
-            font-weight: 400;
-            color: var(--muted);
-            flex: 1 1 380px;
-            min-width: 200px;
-        }
-
-        @media (max-width: 768px) {
-            .uber-bar {
-                padding: 24px 22px;
-            }
-            .uber-bar h2 {
-                font-size: 34px;
-            }
-            .uber-bar p {
-                font-size: 19px;
-            }
-        }
-
-@media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation: none !important;
-                transition: none !important;
-            }
-        }
-
-        [data-aos] {
-            opacity: 1 !important;
-            transform: none !important;
-        }
-    </style>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg uber-nav" aria-label="Main navigation">
-        <div class="container">
-            <a class="navbar-brand uber-brand" href="index.html">UberStrike</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#uberNav"
-                aria-controls="uberNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="uberNav">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#vision">Vision</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="downloads.html">Download</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body data-page="vision">
+    <noscript>Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a></noscript>
+    <nav class="navbar navbar-expand-lg uber-nav" aria-label="Main navigation"></nav>
     <div class="uber-background">
         <div class="container page-wrap">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-9">
-                    <div data-aos="fade-up" id="vision" class="uber-bar">
+                    <div id="vision" class="uber-bar">
                         <h2>Vision UberStrike</h2>
                         <p>Phase 0:  <br/>Bring back UberStrike version 4.3.9/10. <br/> <br/>
                             Phase 1: <br/> Rewrite UberStrike from the ground up: 64-bit application, latest Unity,
@@ -292,13 +37,4 @@
         </div>
     </div>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-    try {
-        AOS.init();
-    } catch (e) {}
-</script>
 </html>
