@@ -83,6 +83,41 @@
 })();
 
 (function () {
+    var PAGES = [
+        { key: 'home', label: 'Home', href: 'index.html' },
+        { key: 'vision', label: 'Vision', href: 'vision.html' },
+        { key: 'social', label: 'Social Media', href: 'social.html' },
+        { key: 'downloads', label: 'Download', href: 'downloads.html' }
+    ];
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var nav = document.querySelector('nav.uber-nav');
+        if (!nav) return;
+        var page = document.body.getAttribute('data-page') || 'home';
+        var isHome = page === 'home';
+        var brandHref = isHome ? '#' : 'index.html';
+        var items = PAGES.map(function (p) {
+            var href = (p.key === 'home' && isHome) ? '#' : p.href;
+            var active = p.key === page ? ' active' : '';
+            return '<li class="nav-item">' +
+                '<a class="nav-link' + active + '" href="' + href + '">' + p.label + '</a>' +
+                '</li>';
+        }).join('');
+        nav.innerHTML =
+            '<div class="container">' +
+            '<a class="navbar-brand uber-brand" href="' + brandHref + '">UberStrike</a>' +
+            '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#uberNav"' +
+            ' aria-controls="uberNav" aria-expanded="false" aria-label="Toggle navigation">' +
+            '<span class="navbar-toggler-icon"></span>' +
+            '</button>' +
+            '<div class="collapse navbar-collapse" id="uberNav">' +
+            '<ul class="navbar-nav ms-auto mb-2 mb-lg-0">' + items + '</ul>' +
+            '</div>' +
+            '</div>';
+    });
+})();
+
+(function () {
     document.addEventListener('DOMContentLoaded', function () {
         var home = document.getElementById('home');
         if (home) {
