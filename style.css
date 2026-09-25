@@ -570,6 +570,22 @@ body {
     background: linear-gradient(100deg, #15803d, #22c55e);
 }
 
+.cookie-preferences-link {
+    position: fixed;
+    bottom: 12px;
+    left: 16px;
+    z-index: 1040;
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: color .2s ease;
+}
+
+.cookie-preferences-link:hover {
+    color: var(--accent);
+}
+
 body[data-page="vision"] .page-wrap {
     padding: 140px 0 100px;
 }

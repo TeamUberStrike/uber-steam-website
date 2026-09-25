@@ -1,76 +1,73 @@
 (function () {
-    var KEY = 'cookiehub-choice';
-    var chScript = document.createElement('script');
-    chScript.src = 'https://cdn.cookiehub.eu/c2/f228c587.js';
-    document.head.appendChild(chScript);
+    var pre = document.createElement('link');
+    pre.rel = 'preconnect';
+    pre.href = 'https://www.termsfeed.com';
+    document.head.appendChild(pre);
 
-    function getCookie(name) {
-        try {
-            var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
-            return m ? decodeURIComponent(m[1]) : null;
-        } catch (e) {
-            return null;
-        }
-    }
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = 'https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js';
+    s.charset = 'UTF-8';
+    document.head.appendChild(s);
 
-    function setCookie(name, value) {
+    function start() {
         try {
-            var d = new Date();
-            d.setDate(d.getDate() + 365);
-            document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
-        } catch (e) {}
-    }
-
-    function getSavedConsentState() {
-        try {
-            var raw = localStorage.getItem(KEY);
-            if (!raw) raw = getCookie(KEY);
-            return JSON.parse(raw || 'null');
-        } catch (e) {
-            try {
-                return JSON.parse(getCookie(KEY) || 'null');
-            } catch (e2) {
-                return null;
-            }
-        }
-    }
-
-    function saveConsentState(status) {
-        try {
-            if (!status || status.answered !== true) return;
-            var raw = JSON.stringify(status);
-            try {
-                localStorage.setItem(KEY, raw);
-            } catch (e) {}
-            setCookie(KEY, raw);
+            cookieconsent.run({
+                "notice_banner_type": "standalone",
+                "consent_type": "express",
+                "palette": "dark",
+                "language": "en",
+                "page_load_consent_levels": ["strictly-necessary"],
+                "notice_banner_reject_button_hide": false,
+                "preferences_center_close_button_hide": false,
+                "page_refresh_confirmation_buttons": false,
+                "website_name": "UberStrike Steam Portal",
+                "callbacks": {
+                    "scripts_specific_loaded": function (level) {
+                        if (level === 'tracking') {
+                            window.gtag('consent', 'update', {
+                                'analytics_storage': 'granted'
+                            });
+                        } else if (level === 'targeting') {
+                            window.gtag('consent', 'update', {
+                                'ad_storage': 'granted',
+                                'ad_user_data': 'granted',
+                                'ad_personalization': 'granted',
+                                'analytics_storage': 'granted'
+                            });
+                        }
+                    }
+                },
+                "callbacks_force": true
+            });
         } catch (e) {}
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        var cpm = {
-            onInitialise: saveConsentState,
-            onStatusChange: saveConsentState
-        };
-        var saved = getSavedConsentState();
-        if (saved && saved.answered === true) {
-            cpm.consentState = saved;
-        }
-        var start = function () {
-            try {
-                window.cookiehub.load(cpm);
-            } catch (e) {}
-        };
-        if (window.cookiehub) {
+        var a = document.createElement('a');
+        a.href = '#';
+        a.id = 'open_preferences_center';
+        a.className = 'cookie-preferences-link';
+        a.textContent = 'Update cookies preferences';
+        document.body.appendChild(a);
+
+        if (window.cookieconsent) {
             start();
         } else {
-            chScript.addEventListener('load', start);
+            s.addEventListener('load', start);
         }
     });
 })();
 
 (function () {
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+    window.gtag = function () { dataLayer.push(arguments); };
+
+    var pre = document.createElement('link');
+    pre.rel = 'preconnect';
+    pre.href = 'https://www.googletagmanager.com';
+    document.head.appendChild(pre);
+
     gtag('consent', 'default', {
         'ad_storage': 'denied',
         'analytics_storage': 'denied',
