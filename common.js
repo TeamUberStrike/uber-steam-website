@@ -1,76 +1,94 @@
 (function () {
-    var KEY = 'cookiehub-choice';
-    var chScript = document.createElement('script');
-    chScript.src = 'https://cdn.cookiehub.eu/c2/f228c587.js';
-    document.head.appendChild(chScript);
+    var ASSETS = [
+        ['meta', { name: 'keywords', content: 'Uberstrike' }],
+        ['meta', { name: 'robots', content: 'index, follow' }],
+        ['meta', { name: 'language', content: 'English' }],
+        ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css', crossorigin: 'anonymous', referrerpolicy: 'no-referrer' }],
+        ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+        ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+        ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap' }],
+        ['link', { rel: 'stylesheet', href: 'style.css' }]
+    ];
+    ASSETS.forEach(function (item) {
+        var el = document.createElement(item[0]);
+        Object.keys(item[1]).forEach(function (k) {
+            el.setAttribute(k, item[1][k]);
+        });
+        document.head.appendChild(el);
+    });
+})();
 
-    function getCookie(name) {
-        try {
-            var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
-            return m ? decodeURIComponent(m[1]) : null;
-        } catch (e) {
-            return null;
-        }
-    }
+(function () {
+    var pre = document.createElement('link');
+    pre.rel = 'preconnect';
+    pre.href = 'https://www.termsfeed.com';
+    document.head.appendChild(pre);
 
-    function setCookie(name, value) {
-        try {
-            var d = new Date();
-            d.setDate(d.getDate() + 365);
-            document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
-        } catch (e) {}
-    }
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = 'https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js';
+    s.charset = 'UTF-8';
+    document.head.appendChild(s);
 
-    function getSavedConsentState() {
+    function start() {
         try {
-            var raw = localStorage.getItem(KEY);
-            if (!raw) raw = getCookie(KEY);
-            return JSON.parse(raw || 'null');
-        } catch (e) {
-            try {
-                return JSON.parse(getCookie(KEY) || 'null');
-            } catch (e2) {
-                return null;
-            }
-        }
-    }
-
-    function saveConsentState(status) {
-        try {
-            if (!status || status.answered !== true) return;
-            var raw = JSON.stringify(status);
-            try {
-                localStorage.setItem(KEY, raw);
-            } catch (e) {}
-            setCookie(KEY, raw);
+            cookieconsent.run({
+                "notice_banner_type": "standalone",
+                "consent_type": "express",
+                "palette": "dark",
+                "language": "en",
+                "page_load_consent_levels": ["strictly-necessary"],
+                "notice_banner_reject_button_hide": false,
+                "preferences_center_close_button_hide": false,
+                "page_refresh_confirmation_buttons": false,
+                "website_name": "UberStrike Steam Portal",
+                "callbacks": {
+                    "scripts_specific_loaded": function (level) {
+                        if (level === 'tracking') {
+                            window.gtag('consent', 'update', {
+                                'analytics_storage': 'granted'
+                            });
+                        } else if (level === 'targeting') {
+                            window.gtag('consent', 'update', {
+                                'ad_storage': 'granted',
+                                'ad_user_data': 'granted',
+                                'ad_personalization': 'granted',
+                                'analytics_storage': 'granted'
+                            });
+                        }
+                    }
+                },
+                "callbacks_force": true
+            });
         } catch (e) {}
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        var cpm = {
-            onInitialise: saveConsentState,
-            onStatusChange: saveConsentState
-        };
-        var saved = getSavedConsentState();
-        if (saved && saved.answered === true) {
-            cpm.consentState = saved;
-        }
-        var start = function () {
-            try {
-                window.cookiehub.load(cpm);
-            } catch (e) {}
-        };
-        if (window.cookiehub) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.id = 'open_preferences_center';
+        b.className = 'cookie-preferences-link';
+        b.setAttribute('aria-label', 'Update cookies preferences');
+        b.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" fill="currentColor"/><circle cx="9" cy="9.5" r="1.3" fill="#05070d"/><circle cx="12.5" cy="7" r="1.1" fill="#05070d"/><circle cx="15.5" cy="10" r="1.2" fill="#05070d"/><circle cx="8.5" cy="13.5" r="1" fill="#05070d"/><circle cx="14" cy="14.5" r="1.2" fill="#05070d"/><circle cx="11" cy="16" r="1" fill="#05070d"/></svg>';
+        document.body.appendChild(b);
+
+        if (window.cookieconsent) {
             start();
         } else {
-            chScript.addEventListener('load', start);
+            s.addEventListener('load', start);
         }
     });
 })();
 
 (function () {
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+    window.gtag = function () { dataLayer.push(arguments); };
+
+    var pre = document.createElement('link');
+    pre.rel = 'preconnect';
+    pre.href = 'https://www.googletagmanager.com';
+    document.head.appendChild(pre);
+
     gtag('consent', 'default', {
         'ad_storage': 'denied',
         'analytics_storage': 'denied',
@@ -182,5 +200,25 @@
                 }, 1500);
             });
         }
+    });
+})();
+
+(function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        if (document.body.getAttribute('data-page') !== 'home') {
+            var pageWrap = document.querySelector('.page-wrap');
+            if (pageWrap) {
+                var back = document.createElement('a');
+                back.href = 'index.html';
+                back.className = 'back-link';
+                back.innerHTML = '\u2190 Back to homepage';
+                pageWrap.insertBefore(back, pageWrap.firstChild);
+            }
+        }
+        var bs = document.createElement('script');
+        bs.src = 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js';
+        bs.crossOrigin = 'anonymous';
+        bs.referrerPolicy = 'no-referrer';
+        document.body.appendChild(bs);
     });
 })();
