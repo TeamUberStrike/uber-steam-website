@@ -197,18 +197,3 @@
         }
     });
 })();
-
-(function () {
-    document.addEventListener('DOMContentLoaded', function () {
-        if (document.body.getAttribute('data-page') !== 'home') {
-            var pageWrap = document.querySelector('.page-wrap');
-            if (pageWrap) {
-                var back = document.createElement('a');
-                back.href = 'index.html';
-                back.className = 'back-link';
-                back.innerHTML = '\u2190 Back to homepage';
-                pageWrap.insertBefore(back, pageWrap.firstChild);
-            }
-        }
-    });
-})();
