@@ -1,4 +1,24 @@
 (function () {
+    var ASSETS = [
+        ['meta', { name: 'keywords', content: 'Uberstrike' }],
+        ['meta', { name: 'robots', content: 'index, follow' }],
+        ['meta', { name: 'language', content: 'English' }],
+        ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css', crossorigin: 'anonymous', referrerpolicy: 'no-referrer' }],
+        ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+        ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+        ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap' }],
+        ['link', { rel: 'stylesheet', href: 'style.css' }]
+    ];
+    ASSETS.forEach(function (item) {
+        var el = document.createElement(item[0]);
+        Object.keys(item[1]).forEach(function (k) {
+            el.setAttribute(k, item[1][k]);
+        });
+        document.head.appendChild(el);
+    });
+})();
+
+(function () {
     var pre = document.createElement('link');
     pre.rel = 'preconnect';
     pre.href = 'https://www.termsfeed.com';
@@ -180,5 +200,25 @@
                 }, 1500);
             });
         }
+    });
+})();
+
+(function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        if (document.body.getAttribute('data-page') !== 'home') {
+            var pageWrap = document.querySelector('.page-wrap');
+            if (pageWrap) {
+                var back = document.createElement('a');
+                back.href = 'index.html';
+                back.className = 'back-link';
+                back.innerHTML = '\u2190 Back to homepage';
+                pageWrap.insertBefore(back, pageWrap.firstChild);
+            }
+        }
+        var bs = document.createElement('script');
+        bs.src = 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js';
+        bs.crossOrigin = 'anonymous';
+        bs.referrerPolicy = 'no-referrer';
+        document.body.appendChild(bs);
     });
 })();
