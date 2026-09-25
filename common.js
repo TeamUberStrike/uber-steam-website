@@ -65,15 +65,18 @@
         } else {
             chScript.addEventListener('load', start);
         }
-        try {
-            AOS.init();
-        } catch (e) {}
     });
 })();
 
 (function () {
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+    });
     gtag('js', new Date());
     gtag('config', 'AW-18463699538');
     var s = document.createElement('script');

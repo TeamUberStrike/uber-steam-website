@@ -344,11 +344,6 @@ body {
     }
 }
 
-[data-aos] {
-    opacity: 1 !important;
-    transform: none !important;
-}
-
 .home-bg {
     padding-top: 110px;
 }
@@ -599,6 +594,9 @@ body[data-page="vision"] .uber-bar p {
 }
 
 @media (max-width: 768px) {
+    .uber-background {
+        background-attachment: scroll;
+    }
     .home-bg {
         padding-top: 84px;
     }
