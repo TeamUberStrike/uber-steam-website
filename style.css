@@ -576,15 +576,30 @@ body {
     bottom: 12px;
     left: 16px;
     z-index: 1040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
     color: var(--muted);
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-decoration: none;
-    transition: color .2s ease;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: color .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 
 .cookie-preferences-link:hover {
     color: var(--accent);
+    border-color: rgba(0, 217, 255, 0.45);
+    box-shadow: 0 0 14px rgba(0, 217, 255, 0.25);
+}
+
+.cookie-preferences-link svg {
+    width: 20px;
+    height: 20px;
+    display: block;
 }
 
 body[data-page="vision"] .page-wrap {

@@ -44,12 +44,13 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        var a = document.createElement('a');
-        a.href = '#';
-        a.id = 'open_preferences_center';
-        a.className = 'cookie-preferences-link';
-        a.textContent = 'Update cookies preferences';
-        document.body.appendChild(a);
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.id = 'open_preferences_center';
+        b.className = 'cookie-preferences-link';
+        b.setAttribute('aria-label', 'Update cookies preferences');
+        b.innerHTML = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" fill="currentColor"/><circle cx="9" cy="9.5" r="1.3" fill="#05070d"/><circle cx="12.5" cy="7" r="1.1" fill="#05070d"/><circle cx="15.5" cy="10" r="1.2" fill="#05070d"/><circle cx="8.5" cy="13.5" r="1" fill="#05070d"/><circle cx="14" cy="14.5" r="1.2" fill="#05070d"/><circle cx="11" cy="16" r="1" fill="#05070d"/></svg>';
+        document.body.appendChild(b);
 
         if (window.cookieconsent) {
             start();
